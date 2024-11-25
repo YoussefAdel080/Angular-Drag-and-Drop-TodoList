@@ -1,0 +1,113 @@
+.form-control:disabled {
+  background-color: white;
+}
+
+.field-container .update-toggler {
+  transform: translateY(-6px);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.edit-input {
+  min-height: min-content;
+  padding: 8px 8px 8px 4px;
+  transition: all 0.3s;
+}
+
+.edit-input {
+  opacity: .75;
+  &:hover,
+  &:focus {
+    border: 2px solid black !important;
+    padding-left: 0.5rem;
+    box-shadow: 5px 6px 1px 1px black;
+    transition: all 0.3s;
+  }
+}
+
+.field-container:hover .update-toggler {
+  transform: translateY(0px);
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+@keyframes shakeAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.edit-input.enabled{
+  opacity: 1;
+  border: 2px solid black !important;
+  padding-left: 0.5rem;
+  box-shadow: 5px 6px 1px 1px black;
+  transition: all 0.3s;
+}
+
+.edit-input.enabled.is-invalid {
+  animation-name: shakeAnimation;
+  animation-duration: 300ms;
+  border: 2px solid red !important;
+  box-shadow: 5px 6px 1px 1px red;
+}
+
+.edit-input.enabled.is-invalid:focus {
+  box-shadow: 5px 6px 1px 1px red;
+}
+
+.pencil-icon,
+.trash-icon {
+  animation-name: slideFromRightAnimation;
+  animation-duration: 0.4s;
+}
+
+.spinner-border-container {
+  animation-name: slideFromLeftAnimation;
+  animation-duration: 0.4s;
+}
+
+.update-toggler{
+  background-color: transparent;
+  border: 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.update-toggler :hover{
+  text-decoration: underline;
+}
+
+@keyframes slideFromLeftAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes slideFromRightAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}

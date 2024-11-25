@@ -1,0 +1,105 @@
+@keyframes fadeInSlideDownAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes shakeAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.form-control:focus {
+  border-color: black;
+  border-width: 3px;
+  box-shadow: 0 0 0 0.25rem gray;
+}
+
+.form-control.is-invalid:focus,
+.form-control.is-invalid{
+  border-color: red;
+  border-width: 3px;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.300);
+}
+
+.add-btn {
+  background-color: #caf902;
+  color: black;
+}
+
+.todos-list {
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.todos-list > * + * {
+  margin-top: 1rem;
+}
+
+.list-group-item + .list-group-item {
+  border-top-width: 1px;
+}
+
+.list-group-item-action {
+  transition: all 0.4s;
+}
+
+input.is-invalid,
+textarea.is-invalid {
+  animation-name: shakeAnimation;
+  animation-duration: 300ms;
+}
+
+.invalid-feedback {
+  display: block !important;
+  color: red;
+  animation-name: fadeInSlideDownAnimation;
+  animation-duration: 300ms;
+}
+
+.example-box.cdk-drag-disabled {
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.custom-placeholder {
+  background: #e2e2e2;
+  border: dotted 3px rgba(0, 0, 0, 0.575);
+  min-width: 99.9%;
+  height: 158px !important;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+.cdk-drag-preview {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.todos-list.cdk-drop-list-dragging .drop-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

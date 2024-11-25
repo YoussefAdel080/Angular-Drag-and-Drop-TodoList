@@ -1,0 +1,24 @@
+<textarea
+        type="text"
+        [ngClass]="[
+          control().invalid &&
+          control().touched &&
+          control().dirty &&
+          control().invalid
+            ? 'is-invalid'
+            : ''
+        ]"
+        [formControl]="control()"
+        class="form-control rounded-lg w-100"
+        style="font-weight: 500"
+      >
+</textarea>
+<div class="mt-2">
+  @if(control().touched &&
+  control().dirty && control().invalid){
+  @if (control().hasError('required')) {
+  <p class="invalid-feedback m-0">Please enter a todo.</p>
+  } @if(control().hasError('pattern')) {
+  <p class="invalid-feedback m-0">Please enter a valid todo.</p>
+  } }
+</div>

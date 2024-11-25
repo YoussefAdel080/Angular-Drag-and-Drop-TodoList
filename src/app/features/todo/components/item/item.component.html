@@ -1,0 +1,83 @@
+<div
+  (click)="disableEditing($event)"
+  class="d-flex flex-column justify-content-between gap-2 p-2 rounded-lg"
+>
+  <div class="d-flex w-100">
+    <form (ngSubmit)="updateTodo()" class="d-flex flex-wrap flex-grow-1">
+      <div class="field-container w-100">
+        <textarea
+          #title="ngModel"
+          name="updatedTitle"
+          id="edit-input"
+          required
+          pattern=".*\S.*"
+          [(ngModel)]="updatedTitle"
+          [ngStyle]="{
+            'text-decoration': todo().completed ? 'line-through' : '',
+            'color': todo().completed ? 'gray' : '',
+          }"
+          [ngClass]="[
+            title.invalid &&
+            title.touched &&
+            title.dirty &&
+            (title.hasError('pattern') || title.hasError('required'))
+              ? 'is-invalid'
+              : '',
+            editDisability ? '' : 'enabled'
+          ]"
+          [disabled]="processing() || editDisability"
+          class="form-control col-12 border-0 fs-5 edit-input scrollbar"
+        >
+        </textarea>
+
+        <div
+          (dblclick)="editDisability = false"
+          class="mt-2 mb-0 d-inline-block font-bold update-toggler"
+        >
+          Double tap me to edit todo .
+        </div>
+      </div>
+      <div class="ms-auto">
+        <button
+          [disabled]="
+            title.invalid || title.value == todo().title || processing()
+          "
+          type="submit"
+          class="btn btn-dark"
+        >
+          @if(processing()){
+          <div class="spinner-border-container">
+            <div
+              class="spinner-border spinner-border-sm text-white"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          }@else{
+          <i class="fa fa-solid fa-pencil text-success pencil-icon"></i>
+          }
+        </button>
+        <button
+          [disabled]="processing()"
+          type="button"
+          (click)="deleteTodo()"
+          class="btn btn-dark ms-2"
+        >
+          @if(processing()){
+          <div class="spinner-border-container">
+            <div
+              class="spinner-border spinner-border-sm text-white"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          } @else{
+          <i class="fa fa-solid fa-trash text-danger trash-icon"></i>
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

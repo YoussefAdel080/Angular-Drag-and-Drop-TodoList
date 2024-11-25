@@ -1,0 +1,97 @@
+<h1 class="text-center fw-2 text-white">Todo List</h1>
+<div class="d-flex gap-2 my-4">
+  <div class="form-container flex-grow-1">
+    <form
+      [formGroup]="newTodoTitle"
+      (ngSubmit)="createTodo()"
+      class="d-flex align-items-start gap-4"
+    >
+    <main-input class="flex-grow-1" [control]="this.newTodoTitle.controls.title"></main-input>
+      <button
+        [disabled]="newTodoTitle.invalid"
+        type="submit"
+        class="btn add-btn border-0 rounded-circle text-black"
+      >
+        <i class="fa fa-solid fa-plus"></i>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div
+  cdkDropListGroup
+  class="todos-container d-flex flex-wrap gap-4 gap-lg-0 justify-content-between"
+>
+  <div class="active-todos-container col-lg-5 col-12">
+    <h2 class="pb-4 mb-4 border-bottom border-white text-white text-center">
+      Active
+    </h2>
+    <ol
+      cdkDropList
+      #activeTodosList="cdkDropList"
+      [cdkDropListData]="activeTodos()"
+      (cdkDropListDropped)="drop($event)"
+      (cdkDropListEntered)="toggleTodo($event)"
+      [cdkDropListConnectedTo]="completedTodosList"
+      class="bg-white list-group list-group-numbered todos-list"
+    >
+      @for (todo of activeTodos(); track todo.id) {
+      <li
+        RandomBgColor
+        class="list-group-item list-group-item-action rounded d-flex gap-1"
+      >
+        <app-item
+          class="drag-box flex-grow-1 col-11 overflow-hidden"
+          cdkDrag
+          [cdkDragData]="todo"
+          [cdkDragDisabled]="processedTodos().includes(todo.id)"
+          [ngStyle]="{
+              cursor: processedTodos().includes(todo.id) ? 'not-allowed' : 'move',
+            }"
+          [todo]="todo"
+          (delete)="delete(todo.id)"
+          (update)="update(todo, $event)"
+        >
+          <div class="custom-placeholder flex-grow-1" *cdkDragPlaceholder></div>
+        </app-item>
+      </li>
+      }
+    </ol>
+  </div>
+  <div class="completed-todos-container col-lg-5 col-12">
+    <h2 class="pb-4 mb-4 border-bottom border-white text-white text-center">
+      Completed
+    </h2>
+    <ol
+      cdkDropList
+      #completedTodosList="cdkDropList"
+      [cdkDropListData]="completedTodos()"
+      (cdkDropListDropped)="drop($event)"
+      (cdkDropListEntered)="toggleTodo($event)"
+      [cdkDropListConnectedTo]="activeTodosList"
+      class="bg-white list-group list-group-numbered todos-list"
+    >
+      @for (todo of completedTodos(); track todo.id) {
+      <li
+        RandomBgColor
+        class="list-group-item list-group-item-action rounded d-flex gap-1"
+      >
+        <app-item
+          class="drag-box flex-grow-1 col-11 overflow-hidden"
+          [cdkDragData]="todo"
+          cdkDrag
+          [cdkDragDisabled]="processedTodos().includes(todo.id)"
+          [ngStyle]="{
+              cursor: processedTodos().includes(todo.id) ? 'not-allowed' : 'move',
+            }"
+          [todo]="todo"
+          (delete)="delete(todo.id)"
+          (update)="update(todo, $event)"
+        >
+          <div class="custom-placeholder flex-grow-1" *cdkDragPlaceholder></div>
+        </app-item>
+      </li>
+      }
+    </ol>
+  </div>
+</div>

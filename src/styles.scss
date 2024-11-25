@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import '../node_modules/ngx-toastr/toastr.css';
+
+:root{
+  --bg-dark: #212121;
+  --primary:#346ec9;
+}
+
+html, body { height: 100%; }
+body {
+  background-color: var(--bg-dark) !important;
+  margin: 0;
+  font-family: "Ubuntu", sans-serif !important;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #e5e7eb;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 100vh;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+button.toast-close-button {
+  color: black;
+}
+
+.ngx-toastr.success{
+  border-left-color: #4ade80 !important;
+}
+
+.ngx-toastr.danger{
+  border-left-color: #ef4444 !important;
+}
+
+.toast-progress{
+  opacity: 1 !important;
+}
+
+.toastr-title{
+  font-size: 12px;
+}
+
+.toastr-message
+{
+  font-size: 10px;
+  color:#656565 !important;
+}
+
+.ngx-toastr.success .toast-progress{
+  background-color: #4ade80;
+}
+
+.ngx-toastr.danger .toast-progress{
+  background-color: #ef4444;
+}
