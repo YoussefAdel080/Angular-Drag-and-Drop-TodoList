@@ -38,15 +38,6 @@ export class ItemComponent {
   processedTodos = this.processedTodoService.processedTodos;
   processing = computed(() => this.processedTodos().includes(this.todo().id));
   updatedTitle!: string;
-
-  disableEditing(e: Event) {
-    if (
-      'edit-input' !== (e.target as HTMLElement).id
-    ) {
-      this.editDisability = true;
-      this.updatedTitle = this.todo().title;
-    }
-  }
   updateTodo() {
     this.update.emit(this.updatedTitle);
     this.processedTodoService.addTodo(this.todo().id);

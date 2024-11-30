@@ -1,5 +1,4 @@
 <div
-  (click)="disableEditing($event)"
   class="d-flex flex-column justify-content-between gap-2 p-2 rounded-lg"
 >
   <div class="d-flex w-100">
@@ -15,6 +14,7 @@
           [ngStyle]="{
             'text-decoration': todo().completed ? 'line-through' : '',
             'color': todo().completed ? 'gray' : '',
+            'z-index': !editDisability ? 1 : 0
           }"
           [ngClass]="[
             title.invalid &&
@@ -26,7 +26,7 @@
             editDisability ? '' : 'enabled'
           ]"
           [disabled]="processing() || editDisability"
-          class="form-control col-12 border-0 fs-5 edit-input scrollbar"
+          class="position-relative form-control col-12 border-0 fs-5 edit-input scrollbar"
         >
         </textarea>
 
@@ -43,7 +43,8 @@
             title.invalid || title.value == todo().title || processing()
           "
           type="submit"
-          class="btn btn-dark"
+          class="btn btn-dark position-relative"
+          [ngStyle]="{'z-index': !editDisability ? 1 : 0}"
         >
           @if(processing()){
           <div class="spinner-border-container">
@@ -62,7 +63,8 @@
           [disabled]="processing()"
           type="button"
           (click)="deleteTodo()"
-          class="btn btn-dark ms-2"
+          [ngStyle]="{'z-index': !editDisability ? 1 : 0}"
+          class="btn btn-dark ms-2 position-relative"
         >
           @if(processing()){
           <div class="spinner-border-container">
@@ -81,3 +83,7 @@
     </form>
   </div>
 </div>
+
+@if(!editDisability){
+  <div class="position-absolute top-0 bottom-0 start-0 end-0" (click)="editDisability=true"></div>
+}

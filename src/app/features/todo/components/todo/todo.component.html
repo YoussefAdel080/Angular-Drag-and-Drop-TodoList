@@ -1,5 +1,5 @@
 <h1 class="text-center fw-2 text-white">Todo List</h1>
-<div class="d-flex gap-2 my-4">
+c<div class="d-flex gap-2 my-4">
   <div class="form-container flex-grow-1">
     <form
       [formGroup]="newTodoTitle"
@@ -38,7 +38,7 @@
       @for (todo of activeTodos(); track todo.id) {
       <li
         RandomBgColor
-        class="list-group-item list-group-item-action rounded d-flex gap-1"
+        class="position-static list-group-item list-group-item-action rounded d-flex gap-1"
       >
         <app-item
           class="drag-box flex-grow-1 col-11 overflow-hidden"
@@ -74,7 +74,7 @@
       @for (todo of completedTodos(); track todo.id) {
       <li
         RandomBgColor
-        class="list-group-item list-group-item-action rounded d-flex gap-1"
+        class="position-static list-group-item list-group-item-action rounded d-flex gap-1"
       >
         <app-item
           class="drag-box flex-grow-1 col-11 overflow-hidden"
